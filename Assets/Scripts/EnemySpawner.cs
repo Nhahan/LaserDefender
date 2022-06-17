@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] WaveConfigSO currentWave;
+
     void Start()
     {
-        
+        SpawnEnemies();
     }
 
-    // Update is called once per frame
-    void Update()
+    public WaveConfigSO GetCurrentWave()
     {
-        
+        return currentWave;
+    }
+
+    void SpawnEnemies()
+    {
+        Instantiate(currentWave.GetEnemyPrefab(0),
+                    currentWave.GetStartingWaypoint().position,
+                    Quaternion.identity);
     }
 }
